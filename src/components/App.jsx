@@ -4,12 +4,31 @@ import '../styles/index.scss';
 import background from '../assets/blackboard.jpg';
 
 import font from '../fonts/KgTenThousandReasons-R1ll.ttf'
+import { useState } from 'react';
 
 
 function App() {
 
   // funciones, variables, handles...
+ const [numberOfErrors, setNumberOfErrors] = useState(0);
+ const handleClick = (event) =>{
+  event.preventDefault();
+  setNumberOfErrors (numberOfErrors +1);
+  if(numberOfErrors === ''){
+    setNumberOfErrors ('dummy error-0');
+  
+  }else if
+    (numberOfErrors !== ''){
+    setNumberOfErrors ('dummy error-1');
+  
+  }else{
+    (numberOfErrors !== 'dummy error-2');
+    setNumberOfErrors ('dummy error-3');
+ 
 
+}
+  }
+ 
 
   //html
   return (
@@ -44,6 +63,7 @@ function App() {
               <li className="letter">p</li>
               <li className="letter">x</li>
             </ul>
+            <button className=''onClick={handleClick}>Incrementar</button>
           </div>
           <form className="form">
             <label className="title" htmlFor="last-letter">Escribe una letra:</label>
@@ -57,7 +77,7 @@ function App() {
             />
           </form>
         </section>
-        <section className="dummy error-5">
+        <section className={numberOfErrors}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
@@ -68,9 +88,9 @@ function App() {
           <span className="error-6 head"></span>
           <span className="error-5 line"></span>
           <span className="error-4 line"></span>
-          <span className="error-3 line"></span>
-          <span className="error-2 line"></span>
-          <span className="error-1 line"></span>
+          <span className={numberOfErrors-3 line}></span>
+          <span className={numberOfErrors-2 line}></span>
+          <span className={numberOfErrors-1 line}></span>
         </section>
       </main>
     </div>
