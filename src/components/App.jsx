@@ -20,7 +20,7 @@ function App() {
  
  const handleLastLetter = (ev) =>{
   console.log(ev.target.value)
-  let re = /[ñíóáéú a-zA-Z]/
+  let re = /^[A-Za-z]+$/;
   if (re.test(ev.target.value)) {
     //setLastLetter(lastLetter);
     
