@@ -16,6 +16,23 @@ function App() {
   setNumberOfErrors (numberOfErrors +1);
  };
 
+ const [lastLetter, setLastLetter] = useState ('');
+ 
+ const handleLastLetter = (ev) =>{
+  console.log(ev.target.value)
+  let re = /[ñíóáéú a-zA-Z]/
+  if (re.test(ev.target.value)) {
+    //setLastLetter(lastLetter);
+    
+    setLastLetter (ev.target.value);
+    console.log(lastLetter);
+  }
+ }
+
+ const handleSubmit = (ev) =>{
+    ev.preventDefault();
+ }
+
   //html
   return (
     <>
@@ -51,7 +68,8 @@ function App() {
             </ul>
             <button className='button'onClick={handleClick}>Incrementar</button>
           </div>
-          <form className="form">
+          <form className="form" onSubmit ={handleSubmit}
+          >
             <label className="title" htmlFor="last-letter">Escribe una letra:</label>
             <input
               autoComplete="off"
@@ -60,6 +78,8 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
+              value= {lastLetter}
+              onChange ={handleLastLetter}
             />
           </form>
         </section>
