@@ -9,12 +9,15 @@ import {useState} from 'react';
 function App() {
   // funciones, variables, handles...
   const [numberOfErrors, setNumberOfErrors] = useState(0);
+  const [lastLetter, setLastLetter] = useState('');
+  const [word, setWord] = useState('pepino');
+  const [userLetters, setUserLetters] = useState([]);
+  
   const handleClick = (event) => {
     event.preventDefault();
     setNumberOfErrors(numberOfErrors + 1);
   };
 
-  const [lastLetter, setLastLetter] = useState('');
 
   const handleLastLetter = (ev) => {
     console.log(ev.target.value);
@@ -24,8 +27,31 @@ function App() {
 
       setLastLetter(ev.target.value);
       console.log(lastLetter);
+      setUserLetters([...userLetters,ev.target.value]);
+      console.log(userLetters)
     }
   };
+  const renderSolutionLetters = (ev) =>{
+    const wordLetters = word.split('');
+    
+    return wordLetters.map ((letter, index) =>{
+      
+      const newLetter = userLetters.includes(letter);
+      
+      return (
+        <li className='letter' key = {index}>{newLetter
+          ?letter
+          :''
+          }</li>);
+        }
+      );
+    };
+       
+       
+    
+    
+ 
+  
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -42,17 +68,9 @@ function App() {
           <section>
             <div className="solution">
               <h2 className="title">Solución:</h2>
+              
               <ul className="letters">
-                <li className="letter">k</li>
-                <li className="letter">a</li>
-                <li className="letter"></li>
-                <li className="letter">a</li>
-                <li className="letter">k</li>
-                <li className="letter">r</li>
-                <li className="letter"></li>
-                <li className="letter">k</li>
-                <li className="letter">e</li>
-                <li className="letter">r</li>
+              {renderSolutionLetters ()}
               </ul>
             </div>
             <div className="error">
